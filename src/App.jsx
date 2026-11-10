@@ -29,6 +29,18 @@ function App() {
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
+    if (!isOpened) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpened]);
+
+  useEffect(() => {
     const updateCountdown = () => {
       const distance = weddingDate.getTime() - Date.now();
 
